@@ -87,9 +87,10 @@ docker push [your docker hub username]/react-docker
 ## To automate the process above we can use **Docker Compose**
 
 Docker Compose is a tool that allows us to define and manage multi-container Docker applications.
-It uses a YAML file (`docker-compose.yml`) to configure the application's services, networks, and volumes.
+It uses a YAML file (`compose.yml`) to configure the application's services, networks, and volumes.
 
 Docker provides a CLI that generates these files for us, it's called `Docker Init`.
+By runnning `docker init`, it'll ask us for the details and generate the `compose.yml` file.
 
 ## Additional notes
 
