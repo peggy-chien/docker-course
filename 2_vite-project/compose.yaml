@@ -8,13 +8,16 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  server:
+  web:
     build:
       context: .
-    environment:
-      NODE_ENV: production
     ports:
       - 5173:5173
+    volumes:
+      # mount the current directory to /app in the container, the same as `-v $(pwd):/app` in the CLI
+      - .:/app
+      # mount the node_modules directory to /app/node_modules in the container
+      - /app/node_modules
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to

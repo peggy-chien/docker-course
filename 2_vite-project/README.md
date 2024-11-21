@@ -48,3 +48,40 @@ export default tseslint.config({
   },
 })
 ```
+
+# Docker
+
+## In the `compose.yaml` file
+
+We're using the `build` section to build the image.
+The `context` property is the path to the directory containing the Dockerfile.
+The `docker build` command will look for a Dockerfile in the current directory by default, but we can specify a different path using the `-f` flag.
+The `ports` section is used to expose the port that the application listens on.
+The `volumes` section is used to mount the volume to the container.
+
+_Note: remember to add the `"dev": "vite --host"` script to the `package.json` file to expose the port for vite._
+
+## To run the container
+
+```bash
+docker compose up
+```
+
+Add `sudo` if you get permission errors.
+
+## Docker Compose Watch
+
+Docker compose isn't optimal for developer experience.
+e.g. Every time we make a change to the `package.json` file, we have to rerun the container.
+
+Docker compose watch listens to our changes and rebuilds the container, rerunning our app, and so on.
+
+```bash
+docker compose up --watch
+```
+
+Docker compose does three main things:
+
+1. Sync: moves our changes from the host machine to the container
+2. Rebuild: starts with the creation of new container images, and then updates the services (benifitial when rolling out changes to applications)
+3. Restart: restarts the container
